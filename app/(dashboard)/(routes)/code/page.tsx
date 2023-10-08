@@ -22,8 +22,8 @@ const CodeGenerationPage = () => {
   const router = useRouter();
 
   type MessageType = {
-    role: String;
-    content: String;
+    role: string;
+    content: string;
   };
 
   const [messages, setMessages] = useState<MessageType[]>([]);
