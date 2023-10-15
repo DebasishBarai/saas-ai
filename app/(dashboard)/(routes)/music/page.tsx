@@ -86,7 +86,7 @@ const MusicPage = () => {
               <Loader />
             </div>
           )}
-          {music && !isLoading && (
+          {!music && !isLoading && (
             <Empty label="No conversation started" />
           )}
             {music && (

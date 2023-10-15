@@ -1,7 +1,7 @@
 "use client";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
-import { Music } from "lucide-react";
+import { FileAudio } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -17,7 +17,7 @@ import { Empty } from "@/components/empty";
 const VideoPage = () => {
   const router = useRouter();
 
-  const [music, setMusic] = useState<string>();
+  const [video, setVideo] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -30,10 +30,10 @@ const VideoPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setMusic(undefined)
+      setVideo(undefined)
 
-      const response = await axios.post("/api/music", values);
-      setMusic(response.data.audio);
+      const response = await axios.post("/api/video", values);
+      setVideo(response.data[0]);
       form.reset();
     } catch (error: any) {
       console.log("Something went wrong");
@@ -44,11 +44,11 @@ const VideoPage = () => {
   return (
     <div>
       <Heading
-        title="Music Generation"
-        description="Turn your prompt into Music"
-        icon={Music}
-        iconColor="text-emerald-500"
-        bgColor="bg-emerald-500/10"
+        title="Video Generation"
+        description="Turn your prompt into Video"
+        icon={FileAudio}
+        iconColor="text-orange-700"
+        bgColor="bg-orange-700/10"
       />
       <div className="px-4 lg:px-8">
           <Form {...form}>
@@ -64,7 +64,7 @@ const VideoPage = () => {
                       <Input
                         className="border-0 outline-none focus:visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="Piano solo"
+                        placeholder="Clown fish swimming in a coral reef"
                         {...field}
                       />
                     </FormControl>
@@ -82,19 +82,19 @@ const VideoPage = () => {
             </form>
           </Form>
           {isLoading && (
-            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+            <div className="p-20">
               <Loader />
             </div>
           )}
-          {music && !isLoading && (
-            <Empty label="No conversation started" />
+          {!video && !isLoading && (
+            <Empty label="No video files generated" />
           )}
-            {music && (
-              <audio
+            {video && (
+              <video
               controls
-              className='w-full mt-8'>
-                <source src={ music } />
-              </audio>
+              className='w-full aspect-video mt-8 rounded-lg border bg-black'>
+                <source src={ video } />
+              </video>
                 )}
           </div>
         </div>
