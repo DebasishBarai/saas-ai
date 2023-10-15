@@ -1,7 +1,7 @@
 "use client";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
-import { FileAudio } from "lucide-react";
+import { Video } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -46,7 +46,7 @@ const VideoPage = () => {
       <Heading
         title="Video Generation"
         description="Turn your prompt into Video"
-        icon={FileAudio}
+        icon={Video}
         iconColor="text-orange-700"
         bgColor="bg-orange-700/10"
       />
