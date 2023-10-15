@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Loader } from "@/components/loader";
 import { Empty } from "@/components/empty";
 
-const MusicPage = () => {
+const VideoPage = () => {
   const router = useRouter();
 
   const [music, setMusic] = useState<string>();
@@ -101,4 +101,4 @@ const MusicPage = () => {
   );
 };
 
-export default MusicPage;
+export default VideoPage;
